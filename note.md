@@ -1,6 +1,6 @@
 **Perpustakaan**
 
-   - Clone Repository (PHP minimal versi 8.1)
+   - Clone Repository (PHP minimal versi 8.1 dan pastikan driver mysql sudah terinstall di php)
    - Buat Database dengan nama db_test atau jalankan ```CREATE DATABASE db_test;```
    - Copy .env.example ke .env atau jalankan ```php -r "copy('.env.example', '.env');";```
    - Sesuaikan konfigurasi database di file .env
