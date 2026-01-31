@@ -16,6 +16,7 @@ class DashboardController extends Controller
         $user = auth()->user()->id;
         return $data = [
             'peminjaman' => DB::table('TransaksiPeminjaman')->where('flag_end', 'N')->where('id_user', $user)->count(),
+            'overdue' => DB::table('TransaksiPeminjaman')->where('flag_end', 'N')->where('id_user', $user)->whereRaw("NOW() > tanggal_kembali")->count(),
         ];
     }
 

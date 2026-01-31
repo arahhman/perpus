@@ -2,10 +2,19 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-4 col-6">
-                <div class="small-box bg-success">
+                <div class="small-box bg-info">
                     <div class="inner">
                         <h4>Jumlah Peminjaman Aktif</h4>
                         <p>{{ dashboard.peminjaman ?? 0 }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-6">
+                <div class="small-box bg-warning">
+                    <div class="inner">
+                        <h4>Jumlah Peminjaman Overdue</h4>
+                        <p>{{ dashboard.overdue ?? 0 }}</p>
                     </div>
                 </div>
             </div>
