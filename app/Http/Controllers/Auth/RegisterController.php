@@ -58,7 +58,6 @@ class RegisterController extends Controller
             'alamat' => ['required', 'string'],
             'ttl' => ['required', 'date'],
             'program_studi' => ['required', 'string', 'max:100'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             // 'role' => ['required', 'in:siswa,admin'],
         ]);
     }

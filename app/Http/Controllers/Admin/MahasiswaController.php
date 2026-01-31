@@ -9,6 +9,7 @@ use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\DB;
 use App\Models\TransaksiPeminjaman;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 
 class MahasiswaController extends Controller
 {
@@ -57,7 +58,50 @@ class MahasiswaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'nim' => 'required|string|unique:MasterMahasiswa,nim',
+            'nama' => 'required|string|max:255',
+            'alamat' => 'required|string',
+            'jenis_kelamin' => 'required|in:L,P',
+            'ttl' => 'required|date',
+            'program_studi' => 'required|string|max:255',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+
+        DB::beginTransaction();
+        try {
+            $user = User::create([
+                'name' => $validated['nama'],
+                'email' => $validated['email'],
+                'password' => Hash::make($validated['password']),
+                'role' => 'siswa',
+            ]);
+
+            MasterMahasiswa::create([
+                'id_user' => $user->id,
+                'nim' => $validated['nim'],
+                'nama' => $validated['nama'],
+                'alamat' => $validated['alamat'],
+                'jenis_kelamin' => $validated['jenis_kelamin'],
+                'ttl' => $validated['ttl'],
+                'program_studi' => $validated['program_studi'],
+                'flag_aktif' => 'Y',
+            ]);
+
+            DB::commit();
+            return response()->json([
+                'message' => 'Mahasiswa berhasil ditambahkan',
+                'user' => $user
+            ], 201);
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json([
+                'message' => 'Terjadi kesalahan saat menambahkan mahasiswa',
+                'error' => $e->getMessage()
+            ], 500);
+        }
     }
 
     /**
