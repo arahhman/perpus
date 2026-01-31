@@ -22,6 +22,7 @@
 
 
 **DDL (jika menggunakan migrate tidak usah dijalankan)**
+
     CREATE TABLE MasterBuku (
         id BIGINT AUTO_INCREMENT PRIMARY KEY,
         judul VARCHAR(255) NOT NULL,
