@@ -78,7 +78,6 @@
                             </div>
                         </div>
 
-                        <!-- Program Studi -->
                         <div class="row mb-3">
                             <label for="program_studi" class="col-md-4 col-form-label text-md-end">Program Studi</label>
                             <div class="col-md-6">
@@ -90,6 +89,25 @@
                                 @enderror
                             </div>
                         </div>
+
+                        <div class="row mb-3">
+                            <label for="jenis_kelamin" class="col-md-4 col-form-label text-md-end">Jenis Kelamin</label><br>
+
+                            <div class="col-md-6">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="jenis_kelamin" id="jk_l" value="L" 
+                                        {{ old('jenis_kelamin') == 'L' ? 'checked' : '' }} required>
+                                    <label class="form-check-label" for="jk_l">Laki-laki</label>
+                                </div>
+
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="jenis_kelamin" id="jk_p" value="P" 
+                                        {{ old('jenis_kelamin') == 'P' ? 'checked' : '' }} required>
+                                    <label class="form-check-label" for="jk_p">Perempuan</label>
+                                </div>
+                            </div>
+                        </div>
+
 
                         <div class="row mb-3">
                             <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>

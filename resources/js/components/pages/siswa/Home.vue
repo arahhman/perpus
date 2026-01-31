@@ -29,7 +29,7 @@ export default {
     methods: {
         async fetchData() {
             try {
-                const response = await axios.get('siswa/get-dashboard');
+                const response = await axios.get('/siswa/get-dashboard');
                 this.dashboard = response.data;
             } catch (error) {
                 console.error('Error fetching siswa:', error);

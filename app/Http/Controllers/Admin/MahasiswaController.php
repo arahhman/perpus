@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Models\MasterMahasiswa;
+use Yajra\DataTables\DataTables;
 use App\Http\Controllers\Controller;
 
 class MahasiswaController extends Controller
@@ -13,7 +14,16 @@ class MahasiswaController extends Controller
      */
     public function index()
     {
-        return response()->json(MasterMahasiswa::all());
+        $query = MasterMahasiswa::query();
+
+        return DataTables::of($query)
+            ->addIndexColumn()
+            ->editColumn('jenis_kelamin', function($row) {
+                if ($row->jenis_kelamin === 'L') return 'Laki-laki';
+                if ($row->jenis_kelamin === 'P') return 'Perempuan';
+                return $row->jenis_kelamin;
+            })
+            ->make(true);
     }
 
     /**

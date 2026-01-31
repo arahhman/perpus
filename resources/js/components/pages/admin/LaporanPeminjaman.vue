@@ -118,7 +118,7 @@ export default {
     },
 
     loadMahasiswa() {
-      axios.get("/admin/mahasiswa").then(res => {
+      axios.get("/list-master/mahasiswa").then(res => {
         this.mahasiswas = res.data;
       });
     },

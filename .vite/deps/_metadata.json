@@ -1,8 +1,67 @@
 {
-  "hash": "62fa7624",
+  "hash": "64e62f4f",
   "configHash": "64b46809",
-  "lockfileHash": "e3b0c442",
-  "browserHash": "345ba1f4",
-  "optimized": {},
-  "chunks": {}
+  "lockfileHash": "14220fe2",
+  "browserHash": "e9bc25cf",
+  "optimized": {
+    "vue": {
+      "src": "../../node_modules/vue/dist/vue.runtime.esm-bundler.js",
+      "file": "vue.js",
+      "fileHash": "6bfb2589",
+      "needsInterop": false
+    },
+    "jquery": {
+      "src": "../../node_modules/jquery/dist/jquery.js",
+      "file": "jquery.js",
+      "fileHash": "56c81e49",
+      "needsInterop": true
+    },
+    "bootstrap/dist/js/bootstrap.bundle.min.js": {
+      "src": "../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+      "file": "bootstrap_dist_js_bootstrap__bundle__min__js.js",
+      "fileHash": "5ac98126",
+      "needsInterop": true
+    },
+    "admin-lte/dist/js/adminlte.min.js": {
+      "src": "../../node_modules/admin-lte/dist/js/adminlte.min.js",
+      "file": "admin-lte_dist_js_adminlte__min__js.js",
+      "fileHash": "1c325920",
+      "needsInterop": true
+    },
+    "datatables.net-bs4": {
+      "src": "../../node_modules/datatables.net-bs4/js/dataTables.bootstrap4.mjs",
+      "file": "datatables__net-bs4.js",
+      "fileHash": "0b266952",
+      "needsInterop": false
+    },
+    "vue-router": {
+      "src": "../../node_modules/vue-router/dist/vue-router.mjs",
+      "file": "vue-router.js",
+      "fileHash": "2e577e98",
+      "needsInterop": false
+    },
+    "axios": {
+      "src": "../../node_modules/axios/index.js",
+      "file": "axios.js",
+      "fileHash": "c827d284",
+      "needsInterop": false
+    },
+    "flatpickr": {
+      "src": "../../node_modules/flatpickr/dist/esm/index.js",
+      "file": "flatpickr.js",
+      "fileHash": "ad35d316",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-O2GVER7Y": {
+      "file": "chunk-O2GVER7Y.js"
+    },
+    "chunk-Q62OKVBR": {
+      "file": "chunk-Q62OKVBR.js"
+    },
+    "chunk-G3PMV62Z": {
+      "file": "chunk-G3PMV62Z.js"
+    }
+  }
 }

@@ -68,3 +68,4 @@ Route::prefix('siswa')->middleware(['auth'])->group(function () {
 
 Route::get('/list-master/buku', [App\Http\Controllers\ListMasterController::class, 'buku'])->name('list-master.buku');
 Route::get('/list-master/bukuAll', [App\Http\Controllers\ListMasterController::class, 'bukuAll'])->name('list-master.bukuAll');
+Route::get('/list-master/mahasiswa', [App\Http\Controllers\ListMasterController::class, 'mahasiswa'])->name('list-master.mahasiswa');

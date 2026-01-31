@@ -35,6 +35,11 @@ const routes = [
                 component: () => import('./components/pages/admin/Buku.vue')
             },
             {
+                path: 'daftar-mahasiswa',
+                name: 'admin.mahasiswa',
+                component: () => import('./components/pages/admin/DaftarMahasiswa.vue')
+            },
+            {
                 path: 'peminjaman-buku',
                 name: 'admin.peminjaman',
                 component: () => import('./components/pages/admin/Peminjaman.vue')

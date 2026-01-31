@@ -50,6 +50,13 @@
             </li>
 
             <li class="nav-item">
+              <router-link :to="{ name: 'admin.mahasiswa' }" class="nav-link">
+                <i class="nav-icon fas fa-book"></i>
+                <p>Daftar Mahasiswa</p>
+              </router-link>
+            </li>
+
+            <li class="nav-item">
               <router-link :to="{ name: 'admin.peminjaman' }" class="nav-link">
                 <i class="nav-icon fas fa-book"></i>
                 <p>Peminjaman Buku</p>

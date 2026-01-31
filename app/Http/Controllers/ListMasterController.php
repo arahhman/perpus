@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Models\MasterBuku;
 use Illuminate\Http\Request;
+use App\Models\MasterMahasiswa;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -45,5 +46,10 @@ class ListMasterController extends Controller
             );
 
         return response()->json($query->get());
+    }
+    
+    public function mahasiswa()
+    {
+        return response()->json(MasterMahasiswa::all());
     }
 }

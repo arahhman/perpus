@@ -85,6 +85,7 @@ class RegisterController extends Controller
                 'nim' => $data['nim'],
                 'nama' => $data['name'],
                 'alamat' => $data['alamat'],
+                'jenis_kelamin' => $data['jenis_kelamin'],
                 'ttl' => $data['ttl'],
                 'program_studi' => $data['program_studi'],
             ]);
