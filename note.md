@@ -6,9 +6,9 @@
    - Sesuaikan konfigurasi database di file .env
    - Jalankan ```composer install``` untuk menginstall dependencies
    - Jalankan ```npm install``` untuk menginstall library
+   - Jalankan ```php artisan key:generate``` untuk generate app key
    - jalankan ```php artisan migrate``` untuk migrasi database
    - Jalankan ``` php artisan db:seed --class=UserSeeder``` untuk seeding database
-   - Jalankan ```php artisan key:generate``` untuk generate app key
    - jalankan ```npm run build``` untuk compile asset
    - Jalankan ```php artisan serve``` untuk menjalankan aplikasi
    - buka web menggunakan url dari artisan serve
