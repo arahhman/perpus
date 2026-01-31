@@ -88,6 +88,7 @@ class RegisterController extends Controller
                 'jenis_kelamin' => $data['jenis_kelamin'],
                 'ttl' => $data['ttl'],
                 'program_studi' => $data['program_studi'],
+                'flag_aktif' => 'Y',
             ]);
 
             DB::commit();

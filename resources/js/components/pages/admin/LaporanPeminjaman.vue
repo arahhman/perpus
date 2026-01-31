@@ -154,12 +154,28 @@ export default {
           }
         },
         columns: [
-          { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
-          { data: 'mahasiswa' },
-          { data: 'buku' },
-          { data: 'tanggal_pinjam' },
-          { data: 'tanggal_kembali' },
-          { data: 'statusbuku' },
+            { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
+            { data: 'mahasiswa' },
+            { data: 'buku' },
+            { data: 'tanggal_pinjam' },
+            { data: 'tanggal_kembali' },
+            {
+                data: 'statusbuku',
+                render: function(data, type, row) {
+                    let badgeClass = '';
+                    if (data === 'Overdue') {
+                        badgeClass = 'bg-danger';
+                    } else if (data === 'Selesai') {
+                        badgeClass = 'bg-success';
+                    } else if (data === 'Dipinjam') {
+                        badgeClass = 'bg-warning';
+                    } else {
+                        badgeClass = 'bg-secondary';
+                    }
+
+                    return '<span class="badge ' + badgeClass + '">' + data + '</span>';
+                }
+            },
           { data: 'lamappinjam' }
         ],
         responsive: true,

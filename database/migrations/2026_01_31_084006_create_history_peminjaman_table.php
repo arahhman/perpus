@@ -12,14 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('HistoryPeminjaman', function (Blueprint $table) {
+            $table->id();
             $table->string('id_user');
             $table->string('id_buku');
             $table->date('tanggal_pinjam');
             $table->date('tanggal_kembali');
             $table->enum('flag_end', ['Y', 'N'])->default('Y');
             $table->timestamps();
-
-            $table->primary(['id_user', 'id_buku']);
         });
     }
 
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('_history_peminjaman');
+        Schema::dropIfExists('HistoryPeminjaman');
     }
 };

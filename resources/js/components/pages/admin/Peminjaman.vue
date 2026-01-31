@@ -115,14 +115,19 @@ export default {
       }
     },
     savePeminjaman() {
-      axios.post("/admin/peminjaman", this.form)
-        .then(() => {
-            alert("Peminjaman berhasil disimpan!")
-            window.location.reload();
+        axios.post("/admin/peminjaman", this.form)
+        .then(res => {
+            alert(res.data.message);
+            if(res.data.success){
+                window.location.reload();
+            }
         })
         .catch(err => {
-          console.error(err);
-          alert("Gagal menyimpan peminjaman.");
+            if(err.response && err.response.data && err.response.data.message){
+                alert(err.response.data.message);
+            } else {
+                alert("Gagal menyimpan peminjaman.");
+            }
         });
     },
   },

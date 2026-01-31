@@ -17,6 +17,7 @@ class DashboardController extends Controller
             'totalbuku' => DB::table('MasterBuku')->count(),
             'peminjaman' => DB::table('TransaksiPeminjaman')->where('flag_end', 'N')->count(),
             'totalsiswa' => DB::table('users')->where('role', 'siswa')->count(),
+            'overdue' => DB::table('TransaksiPeminjaman')->where('flag_end', 'N')->whereRaw("NOW() > tanggal_kembali")->count(),
         ];
     }
 

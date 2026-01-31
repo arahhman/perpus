@@ -27,8 +27,8 @@ class LaporanPeminjamanController extends Controller
                 DB::raw("concat(b.judul, ' (', a.id_buku, ')') as buku"),
                 'a.tanggal_pinjam',
                 'a.tanggal_kembali',
-                DB::raw("concat(DATEDIFF(a.tanggal_kembali, a.tanggal_pinjam), ' hari') as lamappinjam"),
-                DB::raw("case when a.flag_end = 'Y' then 'Selesai' else 'Dipinjam' end as statusbuku"),
+                DB::raw("concat( greatest(datediff(a.tanggal_kembali, a.tanggal_pinjam), 1), ' hari') as lamappinjam"),
+                DB::raw("case when (now() > a.tanggal_kembali and a.flag_end = 'N') then 'Overdue' when a.flag_end = 'Y' then 'Selesai' else 'Dipinjam' end as statusbuku "),
                 'a.id_buku'
             )
             ->where('a.id_user', auth()->user()->id);

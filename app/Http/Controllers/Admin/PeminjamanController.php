@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\StockBuku;
 use Illuminate\Http\Request;
+use App\Models\MasterMahasiswa;
 use Illuminate\Support\Facades\DB;
 use App\Models\TransaksiPeminjaman;
 use App\Http\Controllers\Controller;
@@ -39,7 +40,23 @@ class PeminjamanController extends Controller
         ]);
 
         try {
+            $mahasiswa = MasterMahasiswa::where('id_user', $request->id_user)->first();
+
+            if (!$mahasiswa) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'User tidak ditemukan'
+                ], 422);
+            }
+            if ($mahasiswa->flag_aktif != 'Y') {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'User tidak aktif, tidak bisa meminjam buku'
+                ], 422);
+            }
+
             DB::transaction(function () use ($request) {
+
                 $stok = StockBuku::where('id_buku', $request->id_buku)
                 ->lockForUpdate()
                 ->first();
@@ -56,16 +73,26 @@ class PeminjamanController extends Controller
                     'id_buku' => $request->id_buku,
                     'tanggal_pinjam' => $request->tanggal_pinjam,
                     'tanggal_kembali' => $request->tanggal_kembali,
+                    'created_at' => now(),
+                    'updated_at' => null,
                     'flag_end' => 'N',
                 ]);
             });
-            return response()->json(['success' => true]);
+            return response()->json([
+                'success' => true,
+                'message' => 'Peminjaman berhasil disimpan'
+            ]);
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 422);
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage()
+            ], 422);
         }
 
-        return response()->json(['success' => true]);
-
+        return response()->json([
+            'success' => true,
+            'message' => 'Peminjaman berhasil disimpan'
+        ]);
     }
 
     /**

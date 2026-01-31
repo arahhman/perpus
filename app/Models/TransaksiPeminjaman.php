@@ -11,6 +11,7 @@ class TransaksiPeminjaman extends Model
     public $timestamps = false;
     protected $table = 'TransaksiPeminjaman';
     protected $fillable = [
+        'id',
         'id_user',
         'id_buku',
         'tanggal_pinjam',

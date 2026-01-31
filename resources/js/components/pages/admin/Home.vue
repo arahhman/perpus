@@ -1,32 +1,41 @@
 <template>
     <div class="container-fluid">
         <div class="row">
-        <div class="col-lg-4 col-6">
-            <div class="small-box bg-info">
-                <div class="inner">
-                    <h4>Jumlah Buku</h4>
-                    <p>{{ dashboard.totalbuku }}</p>
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-info">
+                    <div class="inner">
+                        <h5>Jumlah Buku</h5>
+                        <p>{{ dashboard.totalbuku }}</p>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="col-lg-4 col-6">
-            <div class="small-box bg-success">
-                <div class="inner">
-                    <h4>Jumlah Peminjaman Aktif</h4>
-                    <p>{{ dashboard.peminjaman }}</p>
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-success">
+                    <div class="inner">
+                        <h5>Jumlah Mahasiswa</h5>
+                        <p>{{ dashboard.totalsiswa }}</p>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="col-lg-4 col-6">
-            <div class="small-box bg-warning">
-                <div class="inner">
-                    <h4>Jumlah Siswa</h4>
-                    <p>{{ dashboard.totalsiswa }}</p>
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-warning">
+                    <div class="inner">
+                        <h5>Jumlah Peminjaman Aktif</h5>
+                        <p>{{ dashboard.peminjaman }}</p>
+                    </div>
                 </div>
             </div>
-        </div>
+
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-danger">
+                    <div class="inner">
+                        <h5>Jumlah Peminjaman Overdue</h5>
+                        <p>{{ dashboard.overdue }}</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -40,7 +49,8 @@
                 dashboard: {
                     totalbuku: 0,
                     peminjaman: 0,
-                    totalsiswa: 0
+                    totalsiswa: 0,
+                    overdue: 0
                 },
             };
         },

@@ -158,22 +158,41 @@ export default {
           }
         },
         columns: [
-          { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
-          { data: 'mahasiswa' },
-          { data: 'buku' },
-          { data: 'tanggal_pinjam' },
-          { data: 'tanggal_kembali' },
-          { data: 'statusbuku' },
-          { data: 'lamappinjam' },
-          {
-            data: null,
-            orderable: false,
-            searchable: false,
-            render: (data, type, row) => {
-              if (row.statusbuku === 'Dipinjam') {
-                return `<button class="btn btn-success btn-sm kembalikan" data-id_buku="${row.id_buku}">Kembalikan</button>`;
-              }
-              return '';
+            { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
+            { data: 'mahasiswa' },
+            { data: 'buku' },
+            { data: 'tanggal_pinjam' },
+            { data: 'tanggal_kembali' },
+            {
+                data: 'statusbuku',
+                render: function(data, type, row) {
+                    let badgeClass = '';
+                    if (data === 'Overdue') {
+                        badgeClass = 'bg-danger';
+                    } else if (data === 'Selesai') {
+                        badgeClass = 'bg-success';
+                    } else if (data === 'Dipinjam') {
+                        badgeClass = 'bg-warning';
+                    } else {
+                        badgeClass = 'bg-secondary';
+                    }
+
+                    return '<span class="badge ' + badgeClass + '">' + data + '</span>';
+                }
+            },
+            { data: 'lamappinjam' },
+            {
+                data: null,
+                orderable: false,
+                searchable: false,
+                render: (data, type, row) => {
+                if (row.statusbuku === 'Dipinjam') {
+                    return `<button class="btn btn-success btn-sm kembalikan" data-id_buku="${row.id_buku}">Kembalikan</button>`;
+                }else if (row.statusbuku === 'Overdue') {
+                    return `<button class="btn btn-success btn-sm kembalikan" data-id_buku="${row.id_buku}">Kembalikan</button>`;
+                }
+
+                return '';
             }
           }
         ],

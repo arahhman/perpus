@@ -17,6 +17,8 @@
               <th>Jenis Kelamin</th>
               <th>Tanggal Lahir</th>
               <th>Program Studi</th>
+              <th>Status</th>
+              <th>Action</th>
             </tr>
           </thead>
         </table>
@@ -39,24 +41,63 @@ export default {
   },
   methods: {
     initDataTable() {
-      this.dt = $('#laporanTable').DataTable({
-        processing: true,
-        serverSide: true,
-        ajax: {
-          url: "/admin/mahasiswa"
-        },
-        columns: [
-          { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
-          { data: 'nim' },
-          { data: 'nama' },
-          { data: 'alamat' },
-          { data: 'jenis_kelamin' },
-          { data: 'ttl' },
-          { data: 'program_studi' }
-        ],
-        responsive: true,
-        autoWidth: false,
-      });
+        this.dt = $('#laporanTable').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: {
+            url: "/admin/mahasiswa"
+            },
+            columns: [
+            { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
+            { data: 'nim' },
+            { data: 'nama' },
+            { data: 'alamat' },
+            { data: 'jenis_kelamin' },
+            { data: 'ttl' },
+            { data: 'program_studi' },
+            { data: 'flag_aktif' },
+            { data: 'action', name: 'action', orderable: false, searchable: false }
+            ],
+            responsive: true,
+            autoWidth: false,
+        });
+
+        $('#laporanTable').on('click', '.toggleAktifBtn', function() {
+            let id = $(this).data('id');
+            if(confirm('Apakah yakin ingin mengubah status aktif mahasiswa ini?')) {
+                $.ajax({
+                    url: '/admin/mahasiswa/' + id,
+                    type: 'PUT',
+                    data: {
+                        _token: $('meta[name="csrf-token"]').attr('content'),
+                        toggle_aktif: true
+                    },
+                    success: function(response){
+                        alert('Status berhasil diubah menjadi: ' + response.flag_aktif);
+                        $('#laporanTable').DataTable().ajax.reload();
+                    }
+                });
+            }
+        });
+
+        $('#laporanTable').on('click', '.deleteBtn', function() {
+            let id = $(this).data('id');
+            if(confirm('Apakah yakin ingin menghapus mahasiswa ini?')) {
+                $.ajax({
+                    url: '/admin/mahasiswa/' + id,
+                    type: 'DELETE',
+                    data: {_token: $('meta[name="csrf-token"]').attr('content')},
+                    success: function(response){
+                        alert(response.message);
+                        $('#laporanTable').DataTable().ajax.reload();
+                    },
+                    error: function(xhr) {
+                        alert('Terjadi kesalahan saat menghapus');
+                    }
+                });
+            }
+        });
+
     },
 
     applyFilter() {
